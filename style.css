@@ -1,0 +1,460 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header{
+    background-color: #898989;
+    padding: 0.5rem o;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+}
+
+.container{
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0rem 0rem;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.logo img{
+    object-fit: cover;
+    margin-left: 8px;
+    height: 6rem;
+}
+
+nav ul{
+    display: flex;
+    list-style-type: none;
+}
+
+nav ul li{
+    margin: 0rem 0.5rem;
+    align-items: center;
+    padding: o.5rem 0.5rem;
+}
+
+nav ul li a{
+    text-decoration: none;
+    font-size: 1.1rem;
+    letter-spacing: 2.5px;
+    color: aliceblue;
+    padding: 0.7rem 1rem;
+}
+
+.navbar li a:hover, .navbar li a.active{
+        color: rgb(241, 219, 56);
+    }
+
+nav button{
+    background-color: rgb(255, 191, 0);
+    display: flex;
+    align-items: center;
+    border: 0px;
+    border-radius: 8px;
+     cursor: pointer;
+    padding: 10px;
+    margin: 7px;
+}
+
+nav button:hover {
+    background-color: rgb(253, 253, 93);
+}
+
+.main1{
+    background: url("image/main\ background.jpg") no-repeat center center/cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+    min-height: 100vh;
+}
+
+#aimd{
+    width: 400%;
+    position: absolute;
+    top: 45%;
+}
+
+#aimd h3{
+    size: 18vw;
+    font-weight: 400;
+    animation: 10s linear infinite;
+    animation-name: text;
+}
+
+main form{
+    height: 55rem;
+    width: 66rem;
+    border-radius: 12px;
+    background-color: bisque;
+    padding: 4rem;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+
+form input, form select, form textarea {
+    font-size: large;
+    padding: 13px;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-row {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+    gap: 200px;
+}
+
+.usera, .userg {
+    display: flex;
+    flex-direction: column;
+}
+
+.usern input{
+    font-size: large;
+    height: 3rem;
+    width:  40rem;
+    padding: 13px;
+}
+
+.usera input{
+    font-size: large;
+    height: 3rem;
+    width:  5rem;
+    padding: 13px;
+}
+
+.userg select{
+    font-size: large;
+    height: 3rem;
+    width:  7rem;
+    padding: 13px;
+}
+
+.ckbox{
+    font-size: large;
+    gap: 30px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+.checkbox-group label {
+    width: 18rem;
+}
+
+.msg textarea{
+    height: 5rem;
+    width: 40rem;
+}
+
+form button[type="submit"] {
+    background-color: teal;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: darkcyan;
+}
+
+
+footer{
+    background-color: #111;
+}
+
+.footerContainer{
+    width: 100%;
+    padding: 70px 30px 20px ;
+}
+.socialIcons{
+    display: flex;
+    justify-content: center;
+}
+.socialIcons a{
+    text-decoration: none;
+    padding:  10px;
+    background-color: white;
+    margin: 10px;
+    border-radius: 50%;
+}
+.socialIcons a i{
+    font-size: 2em;
+    color: black;
+    opacity: 0,9;
+}
+
+.socialIcons a:hover{
+    background-color: #111;
+    transition: 0.5s;
+}
+.socialIcons a:hover i{
+    color: white;
+    transition: 0.5s;
+}
+
+
+.footerBottom{
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+}
+.footerBottom p{
+    color: white;
+}
+.designer{
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0px 5px;
+}
+@media (max-width: 700px){
+    .footerNav ul{
+        flex-direction: column;
+    } 
+    .footerNav ul li{
+        width:100%;
+        text-align: center;
+        margin: 10px;
+    }
+    .socialIcons a{
+        padding: 8px;
+        margin: 4px;
+    }
+}
+
+.main3 { 
+    width: 100vw;  
+    overflow: hidden;
+}
+
+.main3 img {
+    width: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+.main2{
+    background-color: #b4583f;
+    margin: 0;
+    padding: 2px;
+}
+
+.symptoms{
+    padding: 7px;
+    margin: 20px;
+    border-radius: 1rem;
+}
+
+#headache{
+    background-color: #91c2ba;
+}
+#fever{
+    background-color: #f7e890;
+}
+#cold{
+    background-color: #edd9bf;
+}
+#cough{
+    background-color: #cef2c8;
+}
+#bloating{
+    background-color: #fec72c;
+}
+#bodyp{
+    background-color: #ecbe7d;
+}
+#muscle{
+    background-color: #d6deca;
+}
+#bloodp{
+    background-color: #f0e8d7;
+}
+#bloods{
+    background-color: #b7aea1;
+}
+#vision{
+    background-color: #a3a990;
+}
+#digestive{
+    background-color: #deb765;
+}
+#skin{
+    background-color: #bca898;
+}
+#throat{
+    background-color: #a6a56c;
+}
+
+.carebut {
+  text-align: center;       
+  margin: 30px 0;           
+}
+
+.carebut button {
+  background-color: #007BFF;    
+  color: white;                 
+  padding: 12px 30px;           
+  font-size: 1.1rem;            
+  border: none;                 
+  border-radius: 6px;           
+  cursor: pointer;              
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carebut button:hover {
+  background-color: #0056b3;   
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.result-box {
+    background-color: #ffffff;
+    border: 2px solid #007BFF;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 2rem;
+    width: 90%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.result-box h3 {
+    color: #007BFF;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.result-box h4 {
+    color: #28a745;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.result-box p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+#aimd {
+    width: 400%;
+    position: absolute;
+    top: 45%;
+}
+
+#aimd h3 {
+    size: 18vw; /* Note: "size" should probably be "font-size" */
+    font-weight: 400;
+    animation: 10s linear infinite;
+    animation-name: text; /* Missing @keyframes for 'text' */
+}
+
+.result-box {
+    background-color: #ffffff;
+    border: 2px solid #007BFF;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 2rem;
+    width: 90%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.result-box h3 {
+    color: #007BFF;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.result-box h4 {
+    color: #28a745;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.result-box p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+nav button,
+form button[type="submit"],
+.carebut button {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+nav button:hover,
+form button[type="submit"]:hover,
+.carebut button:hover {
+    transform: scale(1.05);
+}
+
+.checkbox-group label:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.symptoms {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    background-color: #f9f9f9;
+}
+
+.symptoms:hover {
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+}
+
+
+
+
+

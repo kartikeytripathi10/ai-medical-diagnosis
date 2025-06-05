@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>AI Medical Diagnosis</title>
+    <link rel="icon" href="image/logo.png">
+</head>
+<link rel="stylesheet" href="style.css">
+<style>
+</style>
+<body>
+    <header>
+       <div class="container">
+        <nav>
+            <div class="logo">
+                <a href="/index.html">
+                    <img src="image/logo.png" alt="">
+                </a>
+            </div>
+            <ul class="navbar">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/care.html">Care</a></li>
+                <li><a href="/about.html">About</a></li>
+            </ul>
+            <button>
+                CONTACT US
+            </button>
+        </nav>
+       </div>
+    </header>
+        
+        <main class="main1">
+
+    <form id="diagnosis-form">
+    <div class="usern">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+
+    <div class="form-row">
+        <div class="usera">
+            <label class= "formc" for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+        </div>
+        
+        <div class="userg">
+            <label class= "formc" for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select...</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="ckbox">
+        <label>Symptoms:</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="symptoms" value="headache"> Headache</label>
+            <label><input type="checkbox" name="symptoms" value="fever"> Fever</label>
+            <label><input type="checkbox" name="symptoms" value="cold"> Cold</label>
+            <label><input type="checkbox" name="symptoms" value="cough"> Cough</label>
+            <label><input type="checkbox" name="symptoms" value="bloating"> Bloating/Gastric</label>
+    <label><input type="checkbox" name="symptoms" value="body pain"> Body Pain</label>
+    <label><input type="checkbox" name="symptoms" value="muscle pain"> Muscle Pain/Soreness</label>
+    <label><input type="checkbox" name="symptoms" value="high bp"> High Blood Pressure</label>
+    <label><input type="checkbox" name="symptoms" value="low bp"> Low Blood Pressure</label>
+    <label><input type="checkbox" name="symptoms" value="high sugar"> High Blood Sugar</label>
+    <label><input type="checkbox" name="symptoms" value="low sugar"> Low Blood Sugar</label>
+    <label><input type="checkbox" name="symptoms" value="vision"> Vision Problems</label>
+    <label><input type="checkbox" name="symptoms" value="digestive"> Digestive Issue</label>
+    <label><input type="checkbox" name="symptoms" value="skin"> Skin Problem</label>
+    <label><input type="checkbox" name="symptoms" value="throat pain"> Throat Pain</label>
+    <label><input type="checkbox" name="symptoms" value="other"> Other</label>
+</div>
+</div>
+
+<div class="msg">
+    <label for="message"></label>
+    <textarea id="message" name="message" placeholder="Describe any other symptoms or relevant info..."></textarea>
+</div>
+
+  <button type="submit">Diagnose</button>
+</form>
+<div id="result" class="result-box" style="display: none;"></div>
+
+    </main>
+    <footer>
+         <div class="footerContainer">
+        <div class="socialIcons">
+            <a href="https://www.facebook.com/Cristiano/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/travisscott" target="_blank"><i class="fa-brands fa-instagram" target="_blank"></i></a>
+            <a href="https://x.com/elonmusk"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://poki.com/" target="_blank"><i class="fa-brands fa-google-plus"></i></a>
+            <a href="https://www.youtube.com/@MrBeast" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        
+    </div>
+    <div class="footerBottom">
+        <p>Copyright &copy;2025; Designed by <span class="designer">Kartikey and Ayush</span></p>
+    </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
