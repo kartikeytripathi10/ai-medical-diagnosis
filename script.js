@@ -1,12 +1,12 @@
 document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault(); // prevent the form from reloading the page
+    e.preventDefault(); 
 
     const name = document.getElementById('name').value;
     const age = parseInt(document.getElementById('age').value);
     const gender = document.getElementById('gender').value;
     const message = document.getElementById('message').value;
 
-    // Get all checked symptoms
+    
     const symptoms = Array.from(document.querySelectorAll('input[name="symptoms"]:checked')).map(cb => cb.value);
 
     fetch('http://127.0.0.1:5000/predict', {

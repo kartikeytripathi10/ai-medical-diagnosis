@@ -14,7 +14,7 @@ def predict():
     cause = "The provided symptoms don't match any known conditions in the system."
     cure = "Please provide more details or consult a healthcare professional."
 
-    # Basic rule-based prediction and cure
+    
     if "fever" in symptoms and "cold" in symptoms:
         diagnosis = f"{name}, you may have Flu or a viral infection"
         cause = "Likely due to viral infection caused by seasonal viruses or exposure to infected individuals."

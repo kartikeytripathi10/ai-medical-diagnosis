@@ -382,10 +382,10 @@ footer{
 }
 
 #aimd h3 {
-    size: 18vw; /* Note: "size" should probably be "font-size" */
+    size: 18vw; 
     font-weight: 400;
     animation: 10s linear infinite;
-    animation-name: text; /* Missing @keyframes for 'text' */
+    animation-name: text; 
 }
 
 .result-box {
