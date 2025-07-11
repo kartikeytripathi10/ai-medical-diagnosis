@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify   
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import google.generativeai as genai
 import os
@@ -9,21 +9,20 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, origins=["https://ai-medical-diagnosis-five.vercel.app/"])  # ✅ Replace with your real frontend domain
+CORS(app, origins=["https://ai-medical-diagnosis-five.vercel.app"])
 
-# ✅ Make sure this matches your .env key name
+# ✅ Make sure this matches your .env key
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-# ✅ Use free Gemini model
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        data = request.get_json()
+        data = request.get_json(force=True)
         symptoms = ", ".join(data.get("symptoms", []))
         message = data.get("message", "")
-        
+
         prompt = f"""
 A patient reports the following symptoms: {symptoms}.
 Additional notes: {message}.
@@ -43,7 +42,7 @@ Respond ONLY in this exact JSON format:
 
         response = model.generate_content(prompt)
 
-        # Clean response from Markdown if needed
+        # Strip Markdown ```
         clean_text = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.MULTILINE)
         structured = json.loads(clean_text)
 
