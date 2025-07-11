@@ -11,15 +11,17 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app, origins=["https://ai-medical-diagnosis-five.vercel.app"])
 
-# ✅ Make sure this matches your .env key
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        data = request.get_json(force=True)
+        # Make sure it's JSON
+        if not request.is_json:
+            return jsonify({"error": "Request must be JSON", "raw": ""}), 415
+
+        data = request.get_json()
         symptoms = ", ".join(data.get("symptoms", []))
         message = data.get("message", "")
 
@@ -42,7 +44,7 @@ Respond ONLY in this exact JSON format:
 
         response = model.generate_content(prompt)
 
-        # Strip Markdown ```
+        # Clean and load JSON
         clean_text = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.MULTILINE)
         structured = json.loads(clean_text)
 
@@ -51,7 +53,7 @@ Respond ONLY in this exact JSON format:
     except Exception as e:
         return jsonify({
             "error": str(e),
-            "raw": response.text if 'response' in locals() else "No response"
+            "raw": locals().get("response", "No Gemini response")
         }), 500
 
 if __name__ == "__main__":
