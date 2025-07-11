@@ -6,27 +6,30 @@ import json
 import re
 from dotenv import load_dotenv
 
+# Load .env file
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app, origins=["https://ai-medical-diagnosis-five.vercel.app"])
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+# Load API key
+api_key = os.getenv("GOOGLE_API_KEY")
+if not api_key:
+    raise ValueError("GOOGLE_API_KEY not set in .env")
+
+genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
         data = request.get_json()
+        if not data:
+            return jsonify({"error": "Invalid or missing JSON payload"}), 400
+
         symptoms = ", ".join(data.get("symptoms", []))
         message = data.get("message", "")
-
-        if not symptoms and not message:
-            return jsonify({
-                "error": "No symptoms or message provided",
-                "raw": "Empty input"
-            }), 400
-
+        
         prompt = f"""
 A patient reports the following symptoms: {symptoms}.
 Additional notes: {message}.
@@ -46,28 +49,28 @@ Respond ONLY in this exact JSON format:
 
         response = model.generate_content(prompt)
 
-        if not response.text.strip():
+        if not hasattr(response, "text") or not response.text.strip():
             return jsonify({
                 "error": "No Gemini response",
-                "raw": "Gemini returned empty text"
+                "raw": "Gemini returned empty or invalid response"
             }), 502
 
-        # Clean and parse Gemini JSON response
-        cleaned = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.MULTILINE)
-        structured = json.loads(cleaned)
+        clean_text = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.MULTILINE)
+        structured = json.loads(clean_text)
 
-        # Ensure required keys exist
-        if all(k in structured for k in ("prediction", "cause", "cure")):
-            return jsonify(structured)
-        else:
-            return jsonify({
-                "error": "Missing keys in Gemini response",
-                "raw": response.text
-            }), 502
+        return jsonify(structured)
+
+    except json.JSONDecodeError:
+        return jsonify({
+            "error": "⚠️ Gemini response could not be parsed.",
+            "raw": response.text
+        }), 500
 
     except Exception as e:
         return jsonify({
             "error": str(e),
-            "raw": response.text if 'response' in locals() else "No Gemini response"
+            "raw": response.text if 'response' in locals() and hasattr(response, 'text') else "No Gemini response"
         }), 500
 
+if __name__ == "__main__":
+    app.run(debug=True)
