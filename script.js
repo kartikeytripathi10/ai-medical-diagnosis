@@ -8,7 +8,7 @@ document.querySelector('form').addEventListener('submit', function(e) {
 
     const symptoms = Array.from(document.querySelectorAll('input[name="symptoms"]:checked')).map(cb => cb.value);
 
-    fetch('http://127.0.0.1:5000/predict', {
+    fetch('https://ai-diagnosis-backend-5aa0.onrender.com/predict', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, age, gender, symptoms, message })
