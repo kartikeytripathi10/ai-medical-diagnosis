@@ -1,12 +1,11 @@
 document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault(); 
+    e.preventDefault();
 
     const name = document.getElementById('name').value;
     const age = parseInt(document.getElementById('age').value);
     const gender = document.getElementById('gender').value;
     const message = document.getElementById('message').value;
 
-    
     const symptoms = Array.from(document.querySelectorAll('input[name="symptoms"]:checked')).map(cb => cb.value);
 
     fetch('http://127.0.0.1:5000/predict', {
@@ -18,21 +17,24 @@ document.querySelector('form').addEventListener('submit', function(e) {
     .then(result => {
         const resultBox = document.getElementById('result');
         resultBox.style.display = 'block';
-       resultBox.innerHTML = `
-    <h3>Predicted Diagnosis:</h3>
-    <p>${result.prediction}</p>
-    <h4>Likely Cause:</h4>
-    <p>${result.cause}</p>
-    <h4>Suggested Cure:</h4>
-    <p>${result.cure}</p>
-`;
 
+        if (result.prediction && result.cause && result.cure) {
+            resultBox.innerHTML = `
+                <h3>🩺 Predicted Diagnosis</h3>
+                <p>${result.prediction}</p>
+                <h4>📌 Likely Cause</h4>
+                <p>${result.cause}</p>
+                <h4>💊 Suggested Cure</h4>
+                <p>${result.cure}</p>
+            `;
+        } else if (result.raw) {
+            resultBox.innerHTML = `<p><strong>⚠️ Response couldn't be parsed:</strong></p><pre>${result.raw}</pre>`;
+        } else {
+            resultBox.innerHTML = `<p><strong>❌ Error:</strong> ${result.error}</p>`;
+        }
     })
     .catch(err => {
         console.error(err);
         alert("Error fetching prediction. Is the backend running?");
     });
 });
-
-
-
