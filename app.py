@@ -17,13 +17,15 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # Make sure it's JSON
-        if not request.is_json:
-            return jsonify({"error": "Request must be JSON", "raw": ""}), 415
-
         data = request.get_json()
         symptoms = ", ".join(data.get("symptoms", []))
         message = data.get("message", "")
+
+        if not symptoms and not message:
+            return jsonify({
+                "error": "No symptoms or message provided",
+                "raw": "Empty input"
+            }), 400
 
         prompt = f"""
 A patient reports the following symptoms: {symptoms}.
@@ -44,17 +46,28 @@ Respond ONLY in this exact JSON format:
 
         response = model.generate_content(prompt)
 
-        # Clean and load JSON
-        clean_text = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.MULTILINE)
-        structured = json.loads(clean_text)
+        if not response.text.strip():
+            return jsonify({
+                "error": "No Gemini response",
+                "raw": "Gemini returned empty text"
+            }), 502
 
-        return jsonify(structured)
+        # Clean and parse Gemini JSON response
+        cleaned = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.MULTILINE)
+        structured = json.loads(cleaned)
+
+        # Ensure required keys exist
+        if all(k in structured for k in ("prediction", "cause", "cure")):
+            return jsonify(structured)
+        else:
+            return jsonify({
+                "error": "Missing keys in Gemini response",
+                "raw": response.text
+            }), 502
 
     except Exception as e:
         return jsonify({
             "error": str(e),
-            "raw": locals().get("response", "No Gemini response")
+            "raw": response.text if 'response' in locals() else "No Gemini response"
         }), 500
 
-if __name__ == "__main__":
-    app.run(debug=True)
