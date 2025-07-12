@@ -5,7 +5,6 @@ document.querySelector('form').addEventListener('submit', function(e) {
     const age = parseInt(document.getElementById('age').value);
     const gender = document.getElementById('gender').value;
     const message = document.getElementById('message').value;
-
     const symptoms = Array.from(document.querySelectorAll('input[name="symptoms"]:checked')).map(cb => cb.value);
 
     const loader = document.getElementById('loader');
@@ -21,7 +20,7 @@ document.querySelector('form').addEventListener('submit', function(e) {
     })
     .then(res => res.json())
     .then(result => {
-        const resultBox = document.getElementById('result');
+        loader.style.display = 'none'; // ✅ Hide loader here
         resultBox.style.display = 'block';
 
         if (result.prediction && result.cause && result.cure) {
@@ -40,7 +39,9 @@ document.querySelector('form').addEventListener('submit', function(e) {
         }
     })
     .catch(err => {
+        loader.style.display = 'none'; // ✅ Hide loader on error too
         console.error(err);
-        alert("Error fetching prediction. Is the backend running?");
+        resultBox.style.display = 'block';
+        resultBox.innerHTML = `<p><strong>❌ Error:</strong> Something went wrong. Please try again later.</p>`;
     });
 });
