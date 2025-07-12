@@ -8,6 +8,12 @@ document.querySelector('form').addEventListener('submit', function(e) {
 
     const symptoms = Array.from(document.querySelectorAll('input[name="symptoms"]:checked')).map(cb => cb.value);
 
+    const loader = document.getElementById('loader');
+    const resultBox = document.getElementById('result');
+
+    loader.style.display = 'block';
+    resultBox.style.display = 'none';
+
     fetch('https://ai-diagnosis-backend-5aa0.onrender.com/predict', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
