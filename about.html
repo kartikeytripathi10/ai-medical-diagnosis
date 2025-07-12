@@ -10,24 +10,31 @@
 <link rel="stylesheet" href="style.css">
 <body>
      <header>
-       <div class="container">
-        <nav>
-            <div class="logo">
-                <a href="/index.html">
-                    <img src="image/logo.png" alt="">
-                </a>
-            </div>
-            <ul class="navbar">
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="/care.html">Care</a></li>
-                <li><a href="/about.html">About</a></li>
-            </ul>
-            <button>
-                CONTACT US
-            </button>
-        </nav>
-       </div>
-    </header>
+  <div class="container">
+    <nav aria-label="Main navigation">
+  <div class="logo">
+    <a href="/index.html">
+      <img src="image/logo.png" alt="Care Website Logo" />
+    </a>
+  </div>
+
+  <div class="nav-toggle" id="navToggle">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <div class="nav-content">
+    <div class="center-nav">
+      <ul class="navbar" id="navbar">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/care.html">Care</a></li>
+        <li><a href="/about.html">About</a></li>
+      </ul>
+    </div>
+    <button class="nav-button" id="contactBtn">CONTACT US</button>
+  </div>
+</nav>
+  </div>
+</header>
     <main class="main3">
         <div>
             <img src="image/about backgorund.jpg" alt="">
@@ -49,7 +56,16 @@
         <p>Copyright &copy;2025; Designed by <span class="designer">Kartikey</span></p>
     </div>
     </footer>
-    
+    <script>
+  const toggleBtn = document.getElementById("navToggle");
+  const navbar = document.getElementById("navbar");
+  const contactBtn = document.getElementById("contactBtn");
+
+  toggleBtn.addEventListener("click", () => {
+    navbar.classList.toggle("active");
+    contactBtn.classList.toggle("show"); // Add this
+  });
+</script>
     
 </body>
 </html>
